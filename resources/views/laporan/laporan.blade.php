@@ -55,7 +55,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" class="needs-validation" method="post">
+                <form action="" class="needs-validation" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                     <div class="form-group">
                         <label for="laporan">Tahap</label>

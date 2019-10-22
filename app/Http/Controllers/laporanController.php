@@ -19,6 +19,10 @@ class laporanController extends Controller
     }
 
     public function tambah(Request $request){
+        $this->validate($request,['file_lapor'=>'required|file|mimes:pdf|max:2048',]);
+        
+        $nama_waktu=date('Y_m_d H_i_s');
+        $nama_file_lapor=$nama_waktu.' '.$request->file('file_lapor')->getClientOriginalName();
         $waktu_sekarang=date('Y-m-d H:i:s');
         $query=DB::table('laporan')->insert([
             'id_laporan'=>null,
@@ -26,12 +30,21 @@ class laporanController extends Controller
             'deskripsi'=>$request->deskripsi,
             'id_progja'=>$request->id_progja,
             'tanggal_pelaksanaan'=>$request->tanggal_pelaksanaan,
-            'file_lapor'=>$request->file_lapor,
+            'file_lapor'=>$nama_file_lapor,
             'created_at'=>$waktu_sekarang,
             'updated_at'=>$waktu_sekarang
         ]);
         if($query){
-            return redirect()->action('laporanController@all')->with('success','berhasil');
+            $upload_file_lapor=$request->file('file_lapor')
+            ->move('file_laporan/',$nama_waktu.' '.$request
+            ->file('file_lapor')->getClientOriginalName());
+            if ($upload_file_lapor) {
+                return redirect()->action('laporanController@all')->with('success','laporan berhasil diinputkan. ');
+            }else{ 
+                return redirect()->action('laporanController@all')->with('danger','data berhasil masuk, data file gagal upload');
+
+            }
+            
         }else {
             return redirect()->action('laporanController@all')->with('danger','gagal');
         }

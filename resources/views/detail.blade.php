@@ -8,40 +8,57 @@
 @section('menu_dasbor', 'active')
 @section('data_content')
 
+<div class="row">
+    <div class="table-responsive col-md-6" >    
+        <table class="table table-borderless">
+            @foreach($progja as $detail_progja)
+                <tr>
+                    <th width="30%">Program Kerja</th>
+                    <td width="5%">:</td>
+                    <td>{{$detail_progja->nama_progja}}</td>    
+                </tr>
+                <tr>
+                    <th>Tanggal Mulai</th>
+                    <td>:</td>
+                    <td>{{$detail_progja->tanggal_mulai}}</td>    
+                </tr>
+           
+                <tr>
+                    <th>Tanggal Selesai</th>                
+                    <td>:</td>
+                    <td>{{$detail_progja->tanggal_selesai}}</td> 
+                </tr>
+                <tr>
+                    <th>Sisa Waktu</th>
+                    <td>:</td>
+                    <td>{{ Carbon\Carbon::parse(strtotime($detail_progja->tanggal_selesai.' 00:00:00'))->diffForHumans() }}</td> 
+                </tr>
+                <tr>
+                    <th>Tahun Anggaran</th>
+                    <td>:</td>
+                    <td>{{$detail_progja->nama_tahun_anggaran}}</td> 
+                </tr>
+                @endforeach
+        </table>
+      
+    </div>
 
-<div class="table-responsive col-md-6" >    
-    <table class="table table-borderless">
-        @foreach($progja as $detail_progja)
-            <tr>
-                <th width="30%">Program Kerja</th>
-                <td width="5%">:</td>
-                <td>{{$detail_progja->nama_progja}}</td>    
-            </tr>
-            <tr>
-                <th>Tanggal Mulai</th>
-                <td>:</td>
-                <td>{{$detail_progja->tanggal_mulai}}</td>    
-            </tr>
-       
-            <tr>
-                <th>Tanggal Selesai</th>                
-                <td>:</td>
-                <td>{{$detail_progja->tanggal_selesai}}</td> 
-            </tr>
-            <tr>
-                <th>Sisa Waktu</th>
-                <td>:</td>
-                <td>{{ Carbon\Carbon::parse(strtotime($detail_progja->tanggal_selesai.' 00:00:00'))->diffForHumans() }}</td> 
-            </tr>
-            <tr>
-                <th>Tahun Anggaran</th>
-                <td>:</td>
-                <td>{{$detail_progja->nama_tahun_anggaran}}</td> 
-            </tr>
-            @endforeach
-    </table>
-  
+    @foreach($dokumentasi as $detail_dokumentasi)
+    
+
+        <div class="col-md-6">
+            <div class=" text-center card" style="width: 350px; height:300px ; " >
+                <center>
+                <img width="200px" height="200px" src="/folderFotoDokumentasi/{{$detail_dokumentasi->foto_dokumentasi}}" " alt="...">
+                </center>
+            <div class="card-body">
+                <p class="card-text">{{$detail_dokumentasi->foto_dokumentasi}}</p>
+        </div>
+            </div>
+            </div>
+    @endforeach
 </div>
+
 
     <hr>
     <h4 class="lead"> Data Anggota Progja </h4>
@@ -90,7 +107,7 @@
                     <td>{{ $data->tahap }}</td>
                     <td>{{ $data->tanggal_pelaksanaan }}</td>
                     <td>{{ $data->deskripsi }}</td>
-                    <td>{{ $data->file_lapor }}</td>
+                    <td ><a href="/file_laporan/{{$data->file_lapor}}">{{ $data->file_lapor }}</a></td>
     
                 </tr>
             @endforeach    

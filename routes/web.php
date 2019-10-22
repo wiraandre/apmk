@@ -13,6 +13,7 @@
 Route::group(['middleware'=>['auth','cekuserlevel:1']],function(){
 
 	Route::get('/' ,'dasborController@index');
+	Route::get('/detail/{id_progja}', 'detailController@index');
 
 
 	//tahun anggaran

@@ -22,18 +22,18 @@
     
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
           <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Balitbangda Kab. Pesawaran</a>
-          <div class="collapse navbar-collapse" id="menu-collapse">
+          <div class="collapse navbar-collapse" id="menu-collapse" style="padding-right: 20px;">
             <ul class="navbar-nav  ml-auto mt-2 mt-lg-0">
-              <li class="nav-item dropdown ">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">andre</a>
-                <div class="dropdown-menu">
-                  <a href="#" class="dropdown-item">propil</a>
-                  <a href="#" class="dropdown-item">sign out</a>
-                </div>
+
+              <li class="nav-item">
+                <a href="#" class="nav-link">User</a>
               </li>
+              <li class="nav-item">
+                  <a href="/logout" class="btn btn-sm btn-outline-secondary">Logout</a>
+              </li>
+              <li class="nav-item"><a href="#"></a></li>
             </ul>
           </div>
-   
         </nav>
     
         <div class="container-fluid">

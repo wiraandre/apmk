@@ -1,8 +1,9 @@
+<!-- <marquee behavior=scroll direction="right" scrollamount="7000"> -->
 @extends('main_dashboard')
 @section('title','Dashboard')
 @section('data_name','Dashboard')
 @section('data_menu')
-<button class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#form_pegawai">Tambahkan Data</button>
+
 @endsection
 @section('menu_dasbor', 'active')
 @section('data_content')
@@ -75,6 +76,7 @@
         <div class="col-md-12">
             Ketua: {{$data_dasbor->nama_pegawai}}
             <br>
+                <!-- <marquee> --><a href="/detail/{{$data_dasbor->id_progja}}" class="btn btn-sm btn-outline-secondary" >Lihat Detail</a></marquee>
             <br>
             <br>
         </div>

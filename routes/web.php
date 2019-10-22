@@ -12,9 +12,9 @@
 */
 Route::group(['middleware'=>['auth','cekuserlevel:1']],function(){
 
-	Route::get('/', function () {
-	    return view('dasbor');
-	});
+	Route::get('/' ,'dasborController@index');
+
+
 	//tahun anggaran
 	Route::get('/tahun_anggaran', 'tahun_anggaranController@all');
 	Route::delete('/tahun_anggaran', 'tahun_anggaranController@delete');

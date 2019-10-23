@@ -88,7 +88,7 @@
         <br>
             <div class="row col-md-12">
                 <h4 class="lead" style="padding-right: 20px" > Data Laporan </h4>
-                <a href="/laporan">
+                <a href="/kelola_laporan/{{$detail_progja->id_progja}}/perencanaan">
                     <button  class="btn btn-sm btn-success " >Kelola Laporan</button>
                 </a>
 

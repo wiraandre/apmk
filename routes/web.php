@@ -11,11 +11,17 @@
 |
 */
 Route::group(['middleware'=>['auth','cekuserlevel:1']],function(){
-
+	//dasbor
 	Route::get('/' ,'dasborController@index');
 	Route::get('/detail/{id_progja}', 'detailController@index');
-
 	Route::get('/file_laporan/{nama_file_laporan}','detailController@showpdf');
+
+	//kelolalaporan
+	Route::get('/kelola_laporan/{id_progja}/{tahap}', 'kelola_laporanController@index');
+	Route::post('/kelola_laporan/{id_progja}/{tahap}', 'kelola_laporanController@tambah');
+	Route::delete('/kelola_laporan/{id_progja}/{tahap}', 'kelola_laporanController@delete');
+	Route::get('/kelola_laporan/{id_progja}/{tahap}/{id_laporan}', 'kelola_laporanController@show');
+	Route::put('/kelola_laporan/{id_progja}/{tahap}/{id_laporan}', 'kelola_laporanController@edit');
 
 
 	//tahun anggaran

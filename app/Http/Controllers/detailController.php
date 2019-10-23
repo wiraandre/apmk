@@ -37,7 +37,7 @@ class detailController extends Controller
 
     }
 
-    public function showpdf($nama)
+    public function showpdf($nama_file_laporan)
     {
         $nama_file='file_laporan/'.$nama_file_laporan;
         return Response::make(file_get_contents($nama_file),200,[

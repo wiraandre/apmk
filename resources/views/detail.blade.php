@@ -86,7 +86,15 @@
 
         <hr>
         <br>
-        <h4 class="lead"> Data Laporan </h4>
+            <div class="row col-md-12">
+                <h4 class="lead" style="padding-right: 20px" > Data Laporan </h4>
+                <a href="/laporan">
+                    <button  class="btn btn-sm btn-success " >Kelola Laporan</button>
+                </a>
+
+            </div>
+            <br>
+
             <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>

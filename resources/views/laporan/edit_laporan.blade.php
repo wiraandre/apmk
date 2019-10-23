@@ -7,7 +7,7 @@
 @section('data_content')
  
          @foreach($data_laporan as $data)
-         <form action="" class="needs-validation" method="post">
+         <form action="" class="needs-validation" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
                     <div class="form-group">
@@ -44,9 +44,13 @@
                         <input type="text" name="deskripsi" value="{{$data->deskripsi}}" required class="form-control" placeholder="Mohon Masukan Deskripsi Laporan">
                     </div>
                     <div class="form-group">
-                        <label for="laporan">File Laporan</label>
-                        <input type="file" name="file_lapor" value="{{$data->file_lapor}}" class="form-control" placeholder="Mohon Masukan File Laporan">
+        
+                        <label for="laporan">File Laporan  <a href="/file_laporan/{{$data->file_lapor}}">{{ $data->file_lapor }}</a></label>
+                        <input type="file" name="file_lapor" class="form-control" placeholder="Mohon Masukan File Laporan">
+
                     </div>
+
+                    <input type="text" name="file_lapor_lama" value="{{$data->file_lapor}}" hidden="hidden">
                     <div class="form-group">
                         <label for="laporan">Program kerja</label>
                         <select name="id_progja" required class="form-control" >

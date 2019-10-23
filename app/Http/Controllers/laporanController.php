@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use File;
 
 class laporanController extends Controller
 {
@@ -56,19 +57,33 @@ class laporanController extends Controller
     }
 
     public function edit(Request $request, $id_laporan){
+        $this->validate($request,['file_lapor'=>'file|mimes:pdf|max:2048',]);
+        $nama_waktu=date('Y_m_d H_i_s');
+        if ($request->hasFile('file_lapor')){
+            $nama_file_lapor=$nama_waktu.' '.$request->file('file_lapor')->getClientOriginalName();
+        }else{
+            $nama_file_lapor=$request->file_lapor_lama;
+        }
+        
         $waktu_sekarang=date('Y-m-d H:i:s');
         $query=DB::table('laporan')->where('id_laporan', $id_laporan)->update([
              'tahap'=>$request->tahap,
             'deskripsi'=>$request->deskripsi,
             'id_progja'=>$request->id_progja,
             'tanggal_pelaksanaan'=>$request->tanggal_pelaksanaan,
-            'file_lapor'=>$request->file_lapor,
+            'file_lapor'=>$nama_file_lapor,
             'updated_at'=>$waktu_sekarang
         ]);
         if($query){
-            return redirect()->action('laporanController@all')->with('success','edit berhasil');
+            if ($request->hasFile('file_lapor')){
+                $upload_file_lapor=$request->file('file_lapor')
+                ->move('file_laporan/',$nama_waktu.' '.$request
+                ->file('file_lapor')->getClientOriginalName());
+                File::delete('file_laporan/'.$request->file_lapor_lama);
+            }
+            return redirect()->action('laporanController@all')->with('success','laporan berhasil diinputkan. ');
         }else {
-            return redirect()->action('laporanController@all')->with('danger','edit gagal');
+            return redirect()->action('laporanController@all')->with('danger','gagal');
         }
     }
     public function delete(Request $request){
@@ -76,7 +91,10 @@ class laporanController extends Controller
         // dd($request->all());
         $query=DB::table('laporan')->where('id_laporan', $request->id_laporan)->delete();
         if($query){
-            return redirect()->action('laporanController@all')->with('success','hapus berhasil');
+            $hapus=File::delete('file_laporan/'.$request->file_lapor_lama);
+            if($hapus){
+                return redirect()->action('laporanController@all')->with('success','hapus berhasil');
+            }
         }else {
             return redirect()->action('laporanController@all')->with('danger','hapus gagal');
         }

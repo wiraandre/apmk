@@ -35,6 +35,7 @@
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <input type="text" value="{{ $data->id_laporan }}" name="id_laporan" hidden>
+                                <input type="text" name="file_lapor_lama" value="{{$data->file_lapor}}" hidden="hidden">
                                 <button onclick="return confirm('Yakin ingin menghapus data?')" class="btn btn-alert" type="submit" name="hapus">Hapus</button>
                             </form>
                     </td>

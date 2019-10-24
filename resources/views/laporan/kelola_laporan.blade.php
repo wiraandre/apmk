@@ -2,7 +2,7 @@
 @section('title','Kelola Laporan')
 @section('data_name','Kelola Laporan')
 @section('data_menu')
-<button class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#form_kelola_laporan">Tambahkan Data</button>
+<button class="btn btn-sm btn-success" data-toggle="modal" data-target="#form_kelola_laporan">Tambahkan Data</button>
 @endsection
 @section('menu_laporan', 'active')
 @section('data_content')

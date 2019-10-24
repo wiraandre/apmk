@@ -40,7 +40,7 @@
         </label>
       </div> -->
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2019-{{ date('Y') }}</p>
+      <p  class="mt-2 mb-2 text-light ">&copy; 2019-{{ date('Y') }} <a href="https://www.wiraandre.web.id">wiraandre.web.id</a></p>
     </form>
 </body>
 </html>

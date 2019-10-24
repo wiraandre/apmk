@@ -19,14 +19,20 @@
         <title>APMK | @yield('title')</title>
     </head>
     <body>
-    
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
           <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Balitbangda Kab. Pesawaran</a>
           <div class="collapse navbar-collapse" id="menu-collapse" style="padding-right: 20px;">
             <ul class="navbar-nav  ml-auto mt-2 mt-lg-0">
 
               <li class="nav-item">
-                <a href="#" class="nav-link">User</a>
+                <a href="#" class="nav-link">Selamat datang  
+                  @if(Auth::user()->id_user_level==1) 
+                    {{ Auth::user()->name }} (admin)
+                  @else
+                    {{ Auth::user()->name }} (pegawai)
+                  @endif
+                
+                </a>
               </li>
               <li class="nav-item">
                   <a href="/logout" class="btn btn-sm btn-outline-secondary">Logout</a>
@@ -47,6 +53,7 @@
                        Dashboard 
                     </a>
                   </li>
+                  @if(Auth::user()->id_user_level==1)
                   <li class="nav-item">
                     <a class="nav-link @yield('menu_progja')"  href="/progja">
                       Program Kerja
@@ -89,6 +96,7 @@
                       Users
                     </a>
                   </li>
+                  @endif
                 </ul>
                 
 
@@ -99,14 +107,7 @@
               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">@yield('data_name')</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">@yield('data_menu')
-                  <!-- <div class="btn-group mr-2">
-                    <button class="btn btn-sm btn-outline-secondary">Share</button>
-                    <button class="btn btn-sm btn-outline-secondary">Export</button>
-                  </div>
-                  <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                    <span data-feather="calendar"></span>
-                    This week
-                  </button> -->
+                  
                 </div>
               
               </div>
@@ -129,59 +130,11 @@
                 @endif
                 @yield('data_content')
 
-
-              <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-    
-              <h2>Section title</h2>
-              <div class="table-responsive">
-                <table class="table table-striped table-sm">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Header</th>
-                      <th>Header</th>
-                      <th>Header</th>
-                      <th>Header</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1,001</td>
-                      <td>Lorem</td>
-                      <td>ipsum</td>
-                      <td>dolor</td>
-                      <td>sit</td>
-                    </tr>
-                    <tr>
-                      <td>1,002</td>
-                      <td>amet</td>
-                      <td>consectetur</td>
-                      <td>adipiscing</td>
-                      <td>elit</td>
-                    </tr>
-                    <tr>
-                      <td>1,003</td>
-                      <td>Integer</td>
-                      <td>nec</td>
-                      <td>odio</td>
-                      <td>Praesent</td>
-                    </tr>
-             
-                   
-                  </tbody>
-                </table> -->
               </div>
             </main>
           </div>
         </div>
-    
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-        <script src="../../assets/js/vendor/popper.min.js"></script>
-        <script src="../../dist/js/bootstrap.min.js"></script> -->
+
         
         <!-- Icons -->
         <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
@@ -189,37 +142,7 @@
           feather.replace()
         </script>
     
-        <!-- Graphs -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-        <script>
-          var ctx = document.getElementById("myChart");
-          var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-              datasets: [{
-                data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-                lineTension: 0,
-                backgroundColor: 'transparent',
-                borderColor: '#007bff',
-                borderWidth: 4,
-                pointBackgroundColor: '#007bff'
-              }]
-            },
-            options: {
-              scales: {
-                yAxes: [{
-                  ticks: {
-                    beginAtZero: false
-                  }
-                }]
-              },
-              legend: {
-                display: false,
-              }
-            }
-          });
-        </script>
+       
       </body>
     <script
         src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

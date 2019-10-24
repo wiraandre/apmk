@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Response;
+use Auth;
 
 class detailController extends Controller
 {
@@ -32,8 +33,23 @@ class detailController extends Controller
         ->where('laporan.id_progja','=',$id_progja)
         ->orderBy('tanggal_pelaksanaan','desc')
         ->get();
+
+        $status_anggota=DB::table('anggota')
+        ->where('anggota.id_pegawai','=', Auth::user()->id_pegawai)
+        ->where('anggota.id_progja','=',$id_progja)
+        ->join('pegawai','pegawai.id_pegawai','=','anggota.id_pegawai')
+        ->count();
+        
+
+        $tampil='';
+        if ($status_anggota>0 || Auth::user()->id_user_level==1) {
+            $tampil='yes';
+        }else {
+            $tampil='no';
+        }
+        
         // dd($laporan_progja);
-            return view('detail', ['progja'=>$progja, 'laporan'=>$laporan_progja ,'anggota'=>$anggota, 'dokumentasi'=>$dokumentasi]);
+            return view('detail', ['progja'=>$progja, 'laporan'=>$laporan_progja ,'anggota'=>$anggota, 'dokumentasi'=>$dokumentasi ,'tampil'=>$tampil]);
 
     }
 
@@ -45,4 +61,6 @@ class detailController extends Controller
             'Content-Dispotition'=>'inline,filename="'.$nama_file.'"'
     ]);
     }
+
+
 }

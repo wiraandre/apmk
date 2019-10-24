@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware'=>['auth','cekuserlevel:1']],function(){
+Route::group(['middleware'=>['auth','cekuserlevel:1,2']],function(){
 	//dasbor
 	Route::get('/' ,'dasborController@index');
 	Route::get('/detail/{id_progja}', 'detailController@index');
@@ -23,6 +23,14 @@ Route::group(['middleware'=>['auth','cekuserlevel:1']],function(){
 	Route::get('/kelola_laporan/{id_progja}/{tahap}/{id_laporan}', 'kelola_laporanController@show');
 	Route::put('/kelola_laporan/{id_progja}/{tahap}/{id_laporan}', 'kelola_laporanController@edit');
 
+	//logout
+	Route::get('/logout', 'loginController@logout');
+
+
+});
+
+
+Route::group(['middleware'=>['auth','cekuserlevel:1']],function(){
 
 	//tahun anggaran
 	Route::get('/tahun_anggaran', 'tahun_anggaranController@all');
@@ -82,7 +90,7 @@ Route::group(['middleware'=>['auth','cekuserlevel:1']],function(){
 	Route::get('/laporan/{id_laporan}', 'laporanController@show');
 	Route::post('/laporan', 'laporanController@tambah');
 	Route::put('/laporan/{id_laporan}', 'laporanController@edit');
-	Route::get('/logout', 'loginController@logout');
+	
 });
 	//login
 	Route::get('/login', 'loginController@index')->name('login');

@@ -23,6 +23,13 @@ Route::group(['middleware'=>['auth','cekuserlevel:1,2']],function(){
 	Route::get('/kelola_laporan/{id_progja}/{tahap}/{id_laporan}', 'kelola_laporanController@show');
 	Route::put('/kelola_laporan/{id_progja}/{tahap}/{id_laporan}', 'kelola_laporanController@edit');
 
+	//keloladokumentasi
+	Route::get('/kelola_laporan/{id_progja}/{tahap}/{id_laporan}/dokumentasi/tambah', 'kelola_dokumentasiController@index');
+	Route::post('/kelola_laporan/{id_progja}/{tahap}/{id_laporan}/dokumentasi/tambah', 'kelola_dokumentasiController@tambah');
+	Route::delete('/kelola_laporan/{id_progja}/{tahap}/{id_laporan}/dokumentasi/delete', 'kelola_dokumentasiController@delete');
+
+
+
 	//logout
 	Route::get('/logout', 'loginController@logout');
 

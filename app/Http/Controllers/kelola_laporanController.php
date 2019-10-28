@@ -39,9 +39,16 @@ class kelola_laporanController extends Controller
         ->join('progja','laporan.id_progja','=','progja.id_progja')
         ->count();
 
+        $dokumentasi=DB::table('dokumentasi')
+        ->where('laporan.id_progja','=',$id_progja)
+        ->where('laporan.tahap', '=',$tahap )
+        ->join('laporan','laporan.id_laporan', '=', 'dokumentasi.id_laporan')
+        ->join('progja', 'progja.id_progja', '=', 'laporan.id_progja')
+        ->get();
+
         $menu_tahap=$tahap;
 
-        return view('laporan.kelola_laporan',['data_laporan'=>$laporan, 'progja'=>$progja, 'data_perencanaan'=>$perencanaan, 'data_pelaksanaan'=>$pelaksanaan, 'data_evaluasi'=>$evaluasi, 'menu_tahap'=>$menu_tahap, 'tahap'=>$tahap, 'id_progja'=>$id_progja]);
+        return view('laporan.kelola_laporan',['data_laporan'=>$laporan, 'progja'=>$progja, 'data_perencanaan'=>$perencanaan, 'data_pelaksanaan'=>$pelaksanaan, 'data_evaluasi'=>$evaluasi, 'menu_tahap'=>$menu_tahap, 'tahap'=>$tahap, 'id_progja'=>$id_progja, 'dokumentasi'=>$dokumentasi]);
     }
 
 

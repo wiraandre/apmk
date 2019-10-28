@@ -28,7 +28,7 @@
  @endforeach
  <br>
  <div class="table-responsive">
-        <table class="table table-hover table-sm">
+        <table class="table table-hover table-bordered table-sm">
             <thead>
             <tr>
                 <th>Tanggal Lapor</th>
@@ -50,8 +50,13 @@
                     <td>{{ $data->deskripsi }}</td>
                     <td>{{ $data->file_lapor }}</td>
 
-                    <td><a href="/kelola_laporan/{{$id_progja}}/{{$tahap}}/{{ $data->id_laporan }}" class="btn btn-warning">
-                            <i class="fas fa-edit"></i>Ubah</a>
+                    <td>
+                        <div class="btn-group" role="group">
+
+                        <a href="/kelola_laporan/{{$id_progja}}/{{$tahap}}/{{ $data->id_laporan }}" >
+                            <button class="btn btn-warning"> Ubah </button>
+                        </a>
+
                             <form action="" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
@@ -59,13 +64,49 @@
                                 <input type="text" name="file_lapor_lama" value="{{$data->file_lapor}}" hidden="hidden">
                                 <button onclick="return confirm('Yakin ingin menghapus data?')" class="btn btn-alert" type="submit" name="hapus">Hapus</button>
                             </form>
+                        </div>
+                        <a href="/kelola_laporan/{{$data->id_progja}}/{{$data->tahap}}/{{$data->id_laporan}}/dokumentasi/tambah">
+                        <button class="btn btn-outline-primary btn-sm">Tambahkan Dokumentasi</button>
+                        </a>
                     </td>
                 </tr>
             @endforeach    
    
             </tbody>
         </table>
-    </div>   
+    </div> 
+    <hr>
+    
+    <div>
+        <h6>Dokumentasi</h6>
+        <hr>
+        <div class="card-columns">
+        @forelse($dokumentasi as $detail_dokumentasi)
+        
+        <div class="card" style="width: 200px; ">
+          <img  src=" /folderFotoDokumentasi/{{$detail_dokumentasi->foto_dokumentasi}}"  class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text" align="center">{{$detail_dokumentasi->tanggal_pelaksanaan}} <br> Deskripsi laporan: {{$detail_dokumentasi->deskripsi}}</p>
+
+            <form action="/kelola_laporan/{{$detail_dokumentasi->id_progja}}/{{$detail_dokumentasi->tahap}}/{{$detail_dokumentasi->id_laporan}}/dokumentasi/delete" method="post">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <input type="text" value="{{ $detail_dokumentasi->id_dokumentasi }}" name="id_dokumentasi" hidden>
+                <input type="text" value="{{ $detail_dokumentasi->foto_dokumentasi }}" name="foto_dokumentasi" hidden>
+                <button onclick="return confirm('Yakin ingin menghapus data?')" class="btn btn-alert" type="submit" name="hapus">Hapus</button>
+            </form>
+          </div>
+        </div>
+        
+         @empty
+         
+         <div>
+             <p>Dokumentasi kosong</p>
+         </div>
+         
+         @endforelse
+         </div>
+    </div>  
 
 @endsection
 

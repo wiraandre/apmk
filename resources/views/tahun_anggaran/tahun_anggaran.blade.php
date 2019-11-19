@@ -28,7 +28,7 @@
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <input type="text" value="{{ $data->id_tahun_anggaran }}" name="id_tahun_anggaran" hidden>
-                                <button onclick="return confirm('Yakin ingin menghapus data? asuk')" class="btn btn-alert" type="submit" name="hapus">Hapus</button>
+                                <button onclick="return confirm('Yakin ingin menghapus data?')" class="btn btn-alert" type="submit" name="hapus">Hapus</button>
                             </form>
                     </td>
                 </tr>
@@ -52,11 +52,11 @@
                 {{ csrf_field() }}
                     <div class="form-group">
                         <label for="tahun_anggaran">Tanggal Mulai</label>
-                        <input type="date" name="tanggal_mulai" required class="form-control" placeholder="Masukan Tanggal mulai progja yang bener anjeng">
+                        <input type="date" name="tanggal_mulai" required class="form-control" placeholder="Masukan Tanggal mulai tahun anggaran">
                     </div>
                      <div class="form-group">
                         <label for="tahun_anggaran">Tanggal Selesai</label>
-                        <input type="date" name="tanggal_selesai" required class="form-control" placeholder="Masukan Tanggal selesai progja yang bener anjeng">
+                        <input type="date" name="tanggal_selesai" required class="form-control" placeholder="Masukan Tanggal selesai tahun anggaran">
                     </div>
                     <button  type="submit" class="btn btn-primary">Ok</button>
 

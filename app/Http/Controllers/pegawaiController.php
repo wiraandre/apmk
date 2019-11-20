@@ -15,6 +15,7 @@ class pegawaiController extends Controller
     }
 
     public function tambah(Request $request){
+    	$this->validate($request,['nama_pegawai'=>'required|regex:/^[a-zA-Z]/u|max:50',],['regex'=>'Harap isi nama pegawai dengan hanya menggunakan huruf dan spasi !!!']);
         $waktu_sekarang=date('Y-m-d H:i:s');
         $query=DB::table('pegawai')->insert([
             'id_pegawai'=>null,

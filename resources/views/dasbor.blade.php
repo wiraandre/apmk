@@ -74,7 +74,11 @@
              id="customRange2">
         </div>
         <div class="col-md-12">
-            Ketua: {{$data_dasbor->nama_pegawai}}
+            @foreach ($ketua as $ketua1)
+            @if($ketua1->keterangan_anggota=='ketua'&& $ketua1->id_progja==$data_dasbor->id_progja)
+            Ketua: {{$ketua1->nama_pegawai}}
+            @endif
+            @endforeach
             <br>
                 <!-- <marquee> --><a href="/detail/{{$data_dasbor->id_progja}}" class="btn btn-sm btn-success" >Lihat Detail</a></marquee>
             <br>
